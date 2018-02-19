@@ -2,6 +2,7 @@
 import pandas
 import numpy as np
 
+data_file_name = '/home/sik/Documents/code/random_thoughts/sulcal_neuroanatomy/all_anterior_inferior_probabilities_RL_only_common_subjects.hdf'
 
 All_probabilities = pandas.read_hdf(data_file_name)
 All_probabilities = All_probabilities.rename({'inferior':'superior'})
@@ -114,6 +115,7 @@ def accuracy_check(subject_ids, sulcus_check, destrieux_name):
                 accuracy_of_output +=1
 
     return  sensitivity_output, accuracy_of_output, accuracy_of_output / (len(sensitivity_output))
+
 
 # ### Precentral Sulcus
 def prcs_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
@@ -338,3 +340,155 @@ def sos_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
 
     return sulci_found
 
+
+# SFS_check_left = sfs_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'left')
+# SFS_check_right = sfs_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'right')
+
+# SFS_prob_left = calculating_prob_of_sulcus_found(subject_ids, SFS_check_left, 'Superior_frontal_sulcus', 'S_front_sup')
+# SFS_prob_right = calculating_prob_of_sulcus_found(subject_ids, SFS_check_right, 'Superior_frontal_sulcus', 'S_front_sup')
+
+# SFS_left_accuracy = accuracy_check(subject_ids, SFS_check_left, 'S_front_sup')
+# SFS_right_accuracy = accuracy_check(subject_ids, SFS_check_right, 'S_front_sup')
+
+# SFS_left_accuracy
+
+# SFS_right_accuracy
+
+
+
+
+# Calcarine_check_left = calcarine_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'left')
+# Calcarine_check_right = calcarine_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'right')
+
+# Calcarine_prob_left = calculating_prob_of_sulcus_found(subject_ids, Calcarine_check_left, 'Calcarine_sulcus', 'S_calcarine')
+# Calcarine_prob_right = calculating_prob_of_sulcus_found(subject_ids, Calcarine_check_right, 'Calcarine_sulcus', 'S_calcarine')
+
+# Calcarine_left_accuracy = accuracy_check(subject_ids, Calcarine_check_left, 'S_calcarine')
+# Calcarine_right_accuracy = accuracy_check(subject_ids, Calcarine_check_right, 'S_calcarine')
+
+# Calcarine_left_accuracy
+
+# Calcarine_right_accuracy
+
+
+
+# Pericallosal_check_left = pericallosal_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'left')
+# Pericallosal_check_right = pericallosal_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'right')
+
+# Pericallosal_prob_left = calculating_prob_of_sulcus_found(subject_ids, Pericallosal_check_left, 'Pericallosal_sulcus', 'S_pericallosal')
+# Pericallosal_prob_right = calculating_prob_of_sulcus_found(subject_ids, Pericallosal_check_right, 'Pericallosal_sulcus', 'S_pericallosal')
+
+# Pericallosal_left_accuracy = accuracy_check(subject_ids, Pericallosal_check_left, 'S_pericallosal')
+# Pericallosal_right_accuracy = accuracy_check(subject_ids, Pericallosal_check_right, 'S_pericallosal')
+
+# Pericallosal_left_accuracy
+
+# Pericallosal_right_accuracy
+
+
+
+# IFS_check_left = ifs_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'left')
+# IFS_check_right = ifs_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'right')
+
+# IFS_prob_left = calculating_prob_of_sulcus_found(subject_ids, IFS_check_left, 'Inferior_frontal_sulcus', 'S_front_inf')
+# IFS_prob_right = calculating_prob_of_sulcus_found(subject_ids, IFS_check_right, 'Inferior_frontal_sulcus', 'S_front_inf')
+
+# IFS_left_accuracy = accuracy_check(subject_ids, IFS_check_left, 'S_front_inf')
+# IFS_right_accuracy = accuracy_check(subject_ids, IFS_check_right, 'S_front_inf')
+
+# IFS_left_accuracy
+
+# IFS_right_accuracy
+
+
+# Postcentral_check_left = postcentral_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'left')
+# Postcentral_check_right = postcentral_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'right')
+
+# Postcentral_prob_left = calculating_prob_of_sulcus_found(subject_ids, Postcentral_check_left, 'Postcentral_sulcus', 'S_postcentral')
+# Postcentral_prob_right = calculating_prob_of_sulcus_found(subject_ids, Postcentral_check_right, 'Postcentral_sulcus', 'S_postcentral')
+
+# PoCS_left_accuracy = accuracy_check(subject_ids, Postcentral_check_left, 'S_postcentral')
+# PoCS_right_accuracy = accuracy_check(subject_ids, Postcentral_check_right, 'S_postcentral')
+
+# PoCS_left_accuracy
+
+# PoCS_right_accuracy
+
+
+
+
+# LOS_check_left = los_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'left')
+# LOS_check_right = los_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'right')
+
+# LOS_prob_left = calculating_prob_of_sulcus_found(subject_ids, LOS_check_left, 'Lateral_occipito-temporal_sulcus', 'S_oc-temp_lat')
+# LOS_prob_right = calculating_prob_of_sulcus_found(subject_ids, LOS_check_right, 'Lateral_occipito-temporal_sulcus', 'S_oc-temp_lat')
+
+# LOS_left_accuracy = accuracy_check(subject_ids, LOS_check_left, 'S_oc-temp_lat')
+# LOS_right_accuracy = accuracy_check(subject_ids, LOS_check_right, 'S_oc-temp_lat')
+
+# LOS_left_accuracy
+
+# LOS_right_accuracy
+
+
+
+
+# SOS_check_left = sos_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'left')
+# SOS_check_right = sos_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 'right')
+
+# SOS_prob_left = calculating_prob_of_sulcus_found(subject_ids, SOS_check_left, 'Superior_occipital_sulcus', 'S_oc_sup_and_transversal')
+# SOS_prob_right = calculating_prob_of_sulcus_found(subject_ids, SOS_check_right, 'Superior_occipital_sulcus', 'S_oc_sup_and_transversal')
+
+# SOS_left_accuracy = accuracy_check(subject_ids, SOS_check_left, 'S_oc_sup_and_transversal')
+# SOS_right_accuracy = accuracy_check(subject_ids, SOS_check_right, 'S_oc_sup_and_transversal')
+
+# SOS_left_accuracy
+
+# SOS_right_accuracy
+
+
+
+
+# # ### Making sulci formulae
+# for a in range(len(subject_ids)):
+#         subject = subject_ids[a]
+
+# formula_for_prcs = (All_subject_and_hemisphere_sets[subject]['left']["S_central"]['anterior']).intersection(
+#     All_subject_and_hemisphere_sets[subject]['left']["Lat_Fis-ant-Horizont"]['superior'].union(
+#         All_subject_and_hemisphere_sets[subject]['left']["Lat_Fis-ant-Vertical"]['superior'].union(
+#             All_subject_and_hemisphere_sets[subject]['left']["Lat_Fis-post"]['superior']
+#         )
+#     )
+# )
+
+# formula_for_sfs = ((All_subject_and_hemisphere_sets[subject]['left']["S_precentral-sup-part"]['anterior']).union(
+#     All_subject_and_hemisphere_sets[subject]['left']["S_precentral-inf-part"]['anterior'])).intersection(
+#     All_subject_and_hemisphere_sets[subject]['left']["S_front_inf"]['superior']
+# )
+
+# formula_for_calcarine = (All_subject_and_hemisphere_sets[subject]['left']['S_parieto_occipital']['inferior'].intersection(
+#     All_subject_and_hemisphere_sets[subject]['left']['S_oc_middle_and_Lunatus']['anterior']).intersection(
+#         All_subject_and_hemisphere_sets[subject]['left']['Lat_Fis-post']['posterior']).intersection(
+#             All_subject_and_hemisphere_sets[subject]['left']['S_occipital_ant']['superior']))
+
+# formula_for_pocs = ((All_subject_and_hemisphere_sets[subject]['left']['S_parieto_occipital']['anterior']).intersection((
+#     All_subject_and_hemisphere_sets[subject]['left']['Lat_Fis-ant-Horizont']['superior'].union(
+#         All_subject_and_hemisphere_sets[subject]['left']['Lat_Fis-ant-Vertical']['superior'].union(
+#             All_subject_and_hemisphere_sets[subject]['left']['Lat_Fis-post']['superior']))).intersection(
+#                 All_subject_and_hemisphere_sets[subject]['left']['S_central']['posterior'])))
+
+# formula_for_ifs = All_subject_and_hemisphere_sets[subject]['left']['S_front_sup']['inferior'].intersection(
+#     All_subject_and_hemisphere_sets[subject]['left']['S_precentral-sup-part']['anterior'])
+
+# formula_for_pericallosal = All_subject_and_hemisphere_sets[subject]['left']['S_central']['inferior'].intersection(
+#     All_subject_and_hemisphere_sets[subject]['left']['S_cingul-Marginalis']['inferior']).intersection(
+#         All_subject_and_hemisphere_sets[subject]['left']['S_calcarine']['anterior']).intersection(
+#             All_subject_and_hemisphere_sets[subject]['left']['Lat_Fis-ant-Horizont']['posterior']).intersection(
+#                 All_subject_and_hemisphere_sets[subject]['left']['S_circular_insula_inf']['superior'])
+
+# formula_for_los = All_subject_and_hemisphere_sets[subject]['left']['S_parieto_occipital']['inferior'].intersection(
+#     All_subject_and_hemisphere_sets[subject]['left']['Lat_Fis-post']['inferior']).intersection(
+#        All_subject_and_hemisphere_sets[subject]['left']['S_temporal_transverse']['posterior'])
+
+# formula_for_sos = All_subject_and_hemisphere_sets[subject]['left']['S_intrapariet_and_P_trans']['posterior'].intersection(
+#     All_subject_and_hemisphere_sets[subject]['left']['S_oc_middle_and_Lunatus']['superior'])
