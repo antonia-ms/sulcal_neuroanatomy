@@ -3,6 +3,7 @@ import pandas
 import numpy as np
 
 data_file_name = '/home/sik/Documents/code/random_thoughts/sulcal_neuroanatomy/all_anterior_inferior_probabilities_RL_only_common_subjects.hdf'
+data_file_name = '/home/amachlou/Documents/INRIA/Sulcal_Neuroanatomy/all_anterior_inferior_probabilities_RL_only_common_subjects.hdf'
 
 All_probabilities = pandas.read_hdf(data_file_name)
 All_probabilities = All_probabilities.rename({'inferior':'superior'})
@@ -184,6 +185,184 @@ def PrCS_formula_accuracy_check(subject_ids, sulcus_check):
     return  sensitivity_output, accuracy_of_output, accuracy_of_output / (len(sensitivity_output))
 
 
+def marginal_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = current_subject_hemi['S_pericallosal']['superior'].intersection(
+            current_subject_hemi['S_postcentral']['anterior']).intersection(
+                current_subject_hemi['S_central']['posterior']
+        )
+
+        sulci_found[current_subject] = sulcus_test
+
+    return sulci_found
+
+
+def ips_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = current_subject_hemi['S_central']['posterior'].intersection(
+            current_subject_hemi['S_parieto_occipital']['anterior']).intersection(
+            current_subject_hemi['S_interm_prim-Jensen']['superior'])
+
+        sulci_found[current_subject] = sulcus_test
+
+    return sulci_found
+
+
+def coll_transv_post_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = current_subject_hemi['S_temporal_inf']['inferior']
+
+        sulci_found[current_subject] = sulcus_test
+
+    return sulci_found
+
+
+def coll_transv_ant_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = current_subject_hemi['S_oc-temp_lat']['inferior']
+
+        sulci_found[current_subject] = sulcus_test
+
+    return sulci_found
+
+
+def fms_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = (current_subject_hemi['S_front_sup']['inferior']).intersection(
+            current_subject_hemi['Lat_Fis-ant-Horizont']['superior']).intersection(
+            current_subject_hemi['S_precentral-inf-part']['anterior'])
+        sulci_found[current_subject] = sulcus_test
+
+    return sulci_found
+
+
+def tts_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = (current_subject_hemi['Lat_Fis-post']['inferior']).intersection(
+            current_subject_hemi['Lat_Fis-ant-Horizont']['posterior'])
+        sulci_found[current_subject] = sulcus_test
+
+    return sulci_found
+
+
+def its_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = (current_subject_hemi['S_temporal_sup']['inferior']).intersection(
+            current_subject_hemi['Lat_Fis-ant-Horizont']['posterior']).intersection(
+            current_subject_hemi['S_oc-temp_lat']['anterior']).intersection(
+            current_subject_hemi['S_collat_transv_ant']['superior'])
+        sulci_found[current_subject] = sulcus_test
+
+    return sulci_found
+
+
+def sts_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = (current_subject_hemi['S_temporal_inf']['superior']).intersection(
+            current_subject_hemi['S_postcentral']['inferior'])
+        sulci_found[current_subject] = sulcus_test
+
+    return sulci_found
+
+def subparietal_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = current_subject_hemi['S_parieto_occipital']['superior'].intersection(
+   current_subject_hemi['S_postcentral']['posterior']).intersection(
+   current_subject_hemi['S_cingul-Marginalis']['inferior'])
+        sulci_found[current_subject]=sulcus_test
+
+    return sulci_found
+
 # ### Superior Frontal Sulcus
 def sfs_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
     '''
@@ -319,6 +498,67 @@ def los_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
 
     return sulci_found
 
+def suborbital_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = current_subject_hemi['S_pericallosal']['anterior'].intersection(
+           current_subject_hemi['S_orbital_med-olfact']['superior'])#.intersection(
+#                current_subject_hemi['Lat_Fis-ant-Vertical']['superior']).intersection(
+#                     current_subject_hemi['S_oc-temp_lat']['anterior'])
+
+        sulci_found[current_subject]=sulcus_test
+
+    return sulci_found
+
+def interm_jen_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = current_subject_hemi['S_intrapariet_and_P_trans']['inferior'].intersection(
+           current_subject_hemi['S_postcentral']['posterior']).intersection(
+               current_subject_hemi['Lat_Fis-ant-Vertical']['superior']).intersection(
+                    current_subject_hemi['S_oc-temp_lat']['anterior'])
+
+        sulci_found[current_subject]=sulcus_test
+
+    return sulci_found
+
+def oc_mid_lun_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
+    '''
+    Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
+    in pandas dataframe format, of subject, hemisphere, sulcus, set of sulci in relative position
+    Function calculates relationship of how to find PrCS for each subject's left hemisphere
+    Output: dictionary with subject id as key, and list of sulci as values.
+    '''
+
+    sulci_found = {}
+
+    for current_subject in subject_ids:
+        current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
+        sulcus_test = current_subject_hemi['S_oc-temp_lat']['posterior'].intersection(
+           current_subject_hemi['S_subparietal']['inferior']).intersection(
+               current_subject_hemi['S_occipital_ant']['superior'])
+
+        sulci_found[current_subject]=sulcus_test
+
+    return sulci_found
 
 # ### Superior Occipital Sulcus
 def sos_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
