@@ -338,8 +338,13 @@ def sts_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = (current_subject_hemi['S_temporal_inf']['superior']).intersection(
-            current_subject_hemi['S_postcentral']['inferior'])
+        sulcus_test = current_subject_hemi['S_intrapariet_and_P_trans']['inferior'].intersection(
+                current_subject_hemi['S_oc_sup_and_transversal']['anterior']).intersection(
+                    current_subject_hemi['S_front_middle']['posterior']).intersection(
+                        current_subject_hemi['S_temporal_inf']['superior']
+        )
+
+
         sulci_found[current_subject] = sulcus_test
 
     return sulci_found
@@ -398,10 +403,9 @@ def calcarine_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, he
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = (current_subject_hemi['S_parieto_occipital']['inferior'].intersection(
-            current_subject_hemi['S_oc_middle_and_Lunatus']['anterior']).intersection(
+        sulcus_test = current_subject_hemi['S_parieto_occipital']['inferior'].intersection(
                 current_subject_hemi['Lat_Fis-post']['posterior']).intersection(
-                    current_subject_hemi['S_occipital_ant']['superior']))
+                    current_subject_hemi['S_occipital_ant']['superior'])
 
         sulci_found[current_subject]=sulcus_test
 
@@ -421,10 +425,8 @@ def postcentral_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, 
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = (current_subject_hemi['S_parieto_occipital']['anterior']).intersection((
-            current_subject_hemi['Lat_Fis-ant-Horizont']['superior'].union(
-               current_subject_hemi['Lat_Fis-ant-Vertical']['superior'].union(
-                  current_subject_hemi['Lat_Fis-post']['superior']))).intersection(
+        sulcus_test = (current_subject_hemi['S_interm_prim-Jensen']['anterior']).intersection((
+            current_subject_hemi['S_temporal_sup']['superior']).intersection(
                        current_subject_hemi['S_central']['posterior']))
 
         sulci_found[current_subject]=sulcus_test
@@ -446,7 +448,8 @@ def ifs_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
         sulcus_test = current_subject_hemi['S_front_sup']['inferior'].intersection(
-           current_subject_hemi['S_precentral-sup-part']['anterior'])
+           current_subject_hemi['S_precentral-sup-part']['anterior']).intersection(
+                current_subject_hemi['S_orbital_lateral']['superior'])
 
         sulci_found[current_subject]=sulcus_test
 
@@ -466,11 +469,9 @@ def pericallosal_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets,
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = current_subject_hemi['S_central']['inferior'].intersection(
-            current_subject_hemi['S_cingul-Marginalis']['inferior']).intersection(
-                current_subject_hemi['S_calcarine']['anterior']).intersection(
-                   current_subject_hemi['Lat_Fis-ant-Horizont']['posterior']).intersection(
-                        current_subject_hemi['S_circular_insula_inf']['superior'])
+        sulcus_test = current_subject_hemi['S_cingul-Marginalis']['inferior'].intersection(
+            current_subject_hemi['S_occipital_ant']['anterior']).intersection(
+                current_subject_hemi['S_oc-temp_lat']['superior'])
 
         sulci_found[current_subject]=sulcus_test
 
@@ -491,8 +492,8 @@ def los_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
         sulcus_test = current_subject_hemi['S_parieto_occipital']['inferior'].intersection(
-            current_subject_hemi['Lat_Fis-post']['inferior']).intersection(
-               current_subject_hemi['S_temporal_transverse']['posterior'])
+            current_subject_hemi['Lat_Fis-post']['posterior']).intersection(
+               current_subject_hemi['S_oc_middle_and_Lunatus']['anterior'])
 
         sulci_found[current_subject]=sulcus_test
 
@@ -510,10 +511,8 @@ def suborbital_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, h
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = current_subject_hemi['S_pericallosal']['anterior'].intersection(
-           current_subject_hemi['S_orbital_med-olfact']['superior'])#.intersection(
-#                current_subject_hemi['Lat_Fis-ant-Vertical']['superior']).intersection(
-#                     current_subject_hemi['S_oc-temp_lat']['anterior'])
+        sulcus_test = current_subject_hemi['S_temporal_inf']['anterior'].intersection(
+           current_subject_hemi['S_front_inf']['inferior'])
 
         sulci_found[current_subject]=sulcus_test
 
@@ -533,13 +532,14 @@ def interm_jen_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, h
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
         sulcus_test = current_subject_hemi['S_intrapariet_and_P_trans']['inferior'].intersection(
            current_subject_hemi['S_postcentral']['posterior']).intersection(
-               current_subject_hemi['Lat_Fis-ant-Vertical']['superior']).intersection(
-                    current_subject_hemi['S_oc-temp_lat']['anterior'])
+               current_subject_hemi['S_oc_sup_and_transversal']['anterior'])
+
 
         sulci_found[current_subject]=sulcus_test
 
     return sulci_found
 
+# ### Occipital Middle and Lunatus Sulcus
 def oc_mid_lun_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
     '''
     Input: subject_ids=list of all subjects' ids, used as keys in All_subject_and_hemisphere_sets=quadruple dictionary
@@ -552,9 +552,9 @@ def oc_mid_lun_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, h
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = current_subject_hemi['S_oc-temp_lat']['posterior'].intersection(
+        sulcus_test = current_subject_hemi['S_temporal_sup']['posterior'].intersection(
            current_subject_hemi['S_subparietal']['inferior']).intersection(
-               current_subject_hemi['S_occipital_ant']['superior'])
+               current_subject_hemi['S_suborbital']['superior'])
 
         sulci_found[current_subject]=sulcus_test
 
@@ -574,7 +574,9 @@ def sos_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
         sulcus_test = current_subject_hemi['S_intrapariet_and_P_trans']['posterior'].intersection(
-           current_subject_hemi['S_oc_middle_and_Lunatus']['superior'])
+           current_subject_hemi['S_oc_middle_and_Lunatus']['superior']).intersection(
+                current_subject_hemi['S_precentral-sup-part']['inferior']
+        )
 
         sulci_found[current_subject]=sulcus_test
 
