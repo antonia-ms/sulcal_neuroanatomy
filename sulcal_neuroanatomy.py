@@ -197,10 +197,8 @@ def marginal_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hem
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = current_subject_hemi['S_pericallosal']['superior'].intersection(
-            current_subject_hemi['S_postcentral']['anterior']).intersection(
-                current_subject_hemi['S_central']['posterior']
-        )
+        sulcus_test = current_subject_hemi['S_subparietal']['superior'].intersection(
+            current_subject_hemi['S_front_sup']['posterior'])
 
         sulci_found[current_subject] = sulcus_test
 
@@ -221,7 +219,8 @@ def ips_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
         sulcus_test = current_subject_hemi['S_central']['posterior'].intersection(
             current_subject_hemi['S_parieto_occipital']['anterior']).intersection(
-            current_subject_hemi['S_interm_prim-Jensen']['superior'])
+            current_subject_hemi['S_interm_prim-Jensen']['superior']).intersection(
+            current_subject_hemi['S_front_sup']['inferior'])
 
         sulci_found[current_subject] = sulcus_test
 
@@ -298,8 +297,11 @@ def tts_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = (current_subject_hemi['Lat_Fis-post']['inferior']).intersection(
-            current_subject_hemi['Lat_Fis-ant-Horizont']['posterior'])
+        sulcus_test = (current_subject_hemi['S_central']['inferior']).intersection(
+            current_subject_hemi['Lat_Fis-ant-Vertical']['posterior']).intersection(
+            current_subject_hemi['S_temporal_sup']['superior']).intersection(
+            current_subject_hemi['S_oc-temp_lat']['anterior'])
+
         sulci_found[current_subject] = sulcus_test
 
     return sulci_found
@@ -318,7 +320,6 @@ def its_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
         sulcus_test = (current_subject_hemi['S_temporal_sup']['inferior']).intersection(
-            current_subject_hemi['Lat_Fis-ant-Horizont']['posterior']).intersection(
             current_subject_hemi['S_oc-temp_lat']['anterior']).intersection(
             current_subject_hemi['S_collat_transv_ant']['superior'])
         sulci_found[current_subject] = sulcus_test
@@ -338,8 +339,12 @@ def sts_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
 
     for current_subject in subject_ids:
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
-        sulcus_test = (current_subject_hemi['S_temporal_inf']['superior']).intersection(
-            current_subject_hemi['S_postcentral']['inferior'])
+        sulcus_test = (current_subject_hemi['S_collat_transv_ant']['superior']).intersection(
+            current_subject_hemi['S_intrapariet_and_P_trans']['inferior'].intersection(
+                current_subject_hemi['S_occipital_ant']['anterior']
+            )
+        )
+
         sulci_found[current_subject] = sulcus_test
 
     return sulci_found
