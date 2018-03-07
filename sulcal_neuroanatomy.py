@@ -2,15 +2,19 @@
 import pandas
 import numpy as np
 
-data_file_name = '/home/sik/Documents/code/random_thoughts/sulcal_neuroanatomy/all_anterior_inferior_probabilities_RL_only_common_subjects.hdf'
-data_file_name = '/home/amachlou/Documents/INRIA/Sulcal_Neuroanatomy/all_anterior_inferior_probabilities_RL_only_common_subjects.hdf'
+#data_file_name = '/home/sik/Documents/code/random_thoughts/sulcal_neuroanatomy/all_anterior_inferior_probabilities_RL_only_common_subjects.hdf'
+#data_file_name = '/home/amachlou/Documents/INRIA/Sulcal_Neuroanatomy/all_anterior_inferior_probabilities_RL_only_common_subjects.hdf'
 
-All_probabilities = pandas.read_hdf(data_file_name)
-All_probabilities = All_probabilities.rename({'inferior':'superior'})
+def get_probabilities_hemispheres_ids_sulcinames(data_file_name):
+    All_probabilities = pandas.read_hdf(data_file_name)
+    All_probabilities = All_probabilities.rename({'inferior': 'superior'})
 
-hemispheres = list(All_probabilities.index.levels[0])
-subject_ids = list(All_probabilities.index.levels[3])
-sulci_names = All_probabilities.columns
+    hemispheres = list(All_probabilities.index.levels[0])
+    subject_ids = list(All_probabilities.index.levels[3])
+    sulci_names = All_probabilities.columns
+
+    return All_probabilities, hemispheres, subject_ids, sulci_names
+
 
 def making_tables_of_each_sub_and_hem(all_probs, subject_ids, hemispheres):
     '''
@@ -221,7 +225,9 @@ def ips_prob_from_formula(subject_ids, All_subject_and_hemisphere_sets, hemi):
         current_subject_hemi = All_subject_and_hemisphere_sets[current_subject][hemi]
         sulcus_test = current_subject_hemi['S_central']['posterior'].intersection(
             current_subject_hemi['S_parieto_occipital']['anterior']).intersection(
-            current_subject_hemi['S_interm_prim-Jensen']['superior'])
+            current_subject_hemi['S_interm_prim-Jensen']['superior']).intersection(
+            current_subject_hemi['S_front_sup']['inferior']
+        )
 
         sulci_found[current_subject] = sulcus_test
 
